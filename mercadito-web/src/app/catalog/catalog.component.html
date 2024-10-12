@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="catalog.component.css" rel="stylesheet" type="text/css">
+    <title>Catalogo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"rel="stylesheet">
+</head>
+<body> 
+  <!-- Menú desplegable del perfil -->
+  <div class="profile-dropdown">
+    <div class="profile-toggle">
+      <img src="https://i.pinimg.com/564x/94/44/38/9444381a4b00758431e4c552d00e6a3a.jpg" alt="Imagen de perfil">
+      <span>{{ profile.name }}</span>
+      <i class="arrow down"></i>
+    </div>
+    <ul class="profile-dropdown-menu">
+      <li>
+        <button type="button" class="btn btn-secondary" (click)="openOrderHistory()"> <span>Ver Compras</span></button>
+      </li>
+      <li>
+        <button type="button" class="btn btn-secondary" (click)="logOut()">
+          <span>Cerrar Sesión</span>
+        </button>
+      </li>
+    </ul>
+  </div>
+
+    <!-- Carrito de compras desplegable -->
+    <app-shopping-cart></app-shopping-cart>
+    <button class="btn"(click)="purchase()"><span>Comprar</span></button>
+    
+<div class center ="container">
+    <h1 class="titulo-centrado">Catálogo</h1>
+
+
+    <div class="contenedor">
+        <div *ngFor="let product of products" class="product-item">
+            <div class="product">
+                <img [src]="product.image" alt="{{ product.title }}">
+                <div class="informacion">
+                    <p>{{ product.title }}</p>
+                    <p class="precio">{{ formatPrice(product.price)  }}</p>
+                    <button class="btn" (click)="addToCart(product)"><span>Agregar</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+</body>
+</html>

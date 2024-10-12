@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="order-history.component.css" rel="stylesheet" type="text/css">
+    <title>Historial de ordenes</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap"rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"rel="stylesheet">
+</head>
+<body>
+    <div class="fondo">
+      <div class="order-history-container">
+        <h2>Historial de Pedidos</h2>
+        <div class="order-list">
+          <div *ngFor="let order of orders" class="order-card">
+            <div class="order-header">
+              <h3>Fecha: {{ order.timestamp }}</h3>
+            </div>
+            <div class="order-products">
+              <h4>Productos:</h4>
+              <ul>
+                <li *ngFor="let productId of order.productsIds">
+                    <img class = image [src]="getProductById(productId).image" alt="{{ getProductById(productId).title }}">
+                    <div class="informacion">
+                        <p>{{ getProductById(productId).title }}</p>
+                        <p class="precio">{{ formatPrice(getProductById(productId).price) }}</p>
+                    </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="btn" (click)="openCatalogo()"><span> Volver al Catálogo</span></button>
+      </div>
+    </div>
+  </body>
+</html>
+

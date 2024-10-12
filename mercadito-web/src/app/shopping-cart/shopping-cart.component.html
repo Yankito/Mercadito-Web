@@ -1,0 +1,18 @@
+
+<div class="dropdown">
+    <button class="btn " (click)="toggleDropdown()" [attr.aria-expanded]="isDropdownOpen ? 'true' : 'false'">
+        <span>Carrito de Compras ({{ shoppingCart.length }})</span>
+    </button>
+    <div class="dropdown-menu" [ngClass]="{ 'show': isDropdownOpen }" aria-labelledby="dropdownCart">
+        <div *ngIf="shoppingCart.length === 0" class="dropdown-item">No hay productos en el carrito.</div>
+        <div *ngFor="let product of shoppingCart" class="dropdown-item">
+            <img [src]="product.image">
+             {{ product.title }} - {{ formatPrice(product.price) }}
+            <button type="button" class="btn btn-sm btn-danger float-right" (click)="removeFromCart(product)"><span>Eliminar</span></button>
+        </div>
+        <div class="dropdown-total">
+            <span class="total-label">Total: </span>
+            <span class="total-value">{{ formatPrice(totalCart()) }}</span>
+        </div>
+    </div>
+</div>
